@@ -1,6 +1,11 @@
-{SerialPort} = require('serialport')
-arduino = new SerialPort('/dev/tty.usbmodem1411')
 
+if not process.env.WEBSERVER? or not process.env.SERIALPORT?
+	console.log 'needs WEBSERVER and SERIALPORT enviroment variables'
+	process.exit(1)
+
+
+{SerialPort} = require('serialport')
+arduino = new SerialPort(process.env.SERIALPORT)
 socket = require('socket.io-client')(process.env.WEBSERVER)
 
 socket.on 'connect', ->
