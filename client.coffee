@@ -12,7 +12,7 @@ socket.on 'connect', ->
 	#console.log 'connected!'
 
 socket.on 'unlock', (data) ->
-	console.log 'sending unlock to arduino'
+	console.log 'sending unlock to arduino at', new Date()
 	arduino.write('o')
 	setTimeout (->
 		arduino.write('l')
